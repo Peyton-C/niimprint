@@ -14,6 +14,17 @@ click = "^8.1.7"
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
+[project]
+name = "niimprint"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+dependencies = [
+    "click>=8.4.2",
+    "pillow>=12.3.0",
+    "pyserial>=3.5",
+]
+
 [tool.ruff]
 line-length = 88
 target-version = "py311"
