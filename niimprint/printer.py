@@ -41,6 +41,12 @@ class RequestCodeEnum(enum.IntEnum):
     SET_QUANTITY = 21  # 0x15
     GET_PRINT_STATUS = 163  # 0xA3
 
+# getting the total_len from the printer doesnt seem to be reliable, so we
+# manually specify known rolls.
+KNOWN_LABEL_CAPACITIES = {
+    "041025002": 155,  # T12*40-155White
+}
+
 
 def _packet_to_int(x):
     return int.from_bytes(x.data, "big")
@@ -204,6 +210,7 @@ class PrinterClient:
             "serial": serial,
             "used_len": used_len,
             "total_len": total_len,
+            "label_capacity": KNOWN_LABEL_CAPACITIES.get(barcode, total_len),
             "type": type_,
         }
 
